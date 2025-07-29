@@ -6,7 +6,7 @@
 ## Description
 This project outlines a complete data engineering and analytics workflow using the Tokyo Olympic dataset. Beginning with a CSV file hosted on GitHub, the data is ingested into the Azure ecosystem through Azure Data Factory. It is first stored in Azure Data Lake Storage Gen2, then processed and transformed using Azure Databricks. The enriched data is saved back to ADLS Gen2 and further analyzed using Azure Synapse Analytics. Finally, insights are visualized using either Azure Synapse or Power BI, delivering a comprehensive analysis of the dataset.
 ## Architecture 
-<img src="Images/Architecture.png">
+<img src="Images/architecture.PNG">
 
 ## Dataset Used 
 This dataset includes information on over 11,000 athletes across 47 disciplines, representing 743 teams that participated in the Tokyo Olympics held in 2021. It captures detailed records of athletes, coaches, and teams, as well as gender-based entry data. Key attributes include names, represented countries, disciplines, gender of participants, and names of the coaches.
