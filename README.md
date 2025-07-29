@@ -56,7 +56,7 @@ Source(Kaggle): [2021 Olympics in Tokyo](https://www.kaggle.com/datasets/arjunpr
   
 Refer below notebook to transformations and code used to mount ADLS Gen2 to Databricks.
 
-[Tokyo Olympics Transformation.ipynb](transformation.ipynb)
+[Transformation.ipynb](transformation.ipynb)
 
 ## Setting Up and Using Azure Synapse Analytics
 1. Creating a Synapse Analytics Workspace.
@@ -71,4 +71,4 @@ You can aslo use PowerBI to generate your analysis reports.
  <img src="Images/synapseanalyticsreport.png">
 
 Refer to the SQL scripts used for data analysis 
-[SQL script.sql]
+([SQL script.sql](https://github.com/salimnisar/Tokyo-Olympics-DE-Project/blob/main/SQL%20script.sql))
