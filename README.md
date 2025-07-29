@@ -14,43 +14,46 @@ This dataset includes information on over 11,000 athletes across 47 disciplines,
 Source(Kaggle): [2021 Olympics in Tokyo](https://www.kaggle.com/datasets/arjunprasadsarkhel/2021-olympics-in-tokyo)
 
 ## Azure Services Used
-1. **Azure Data Factory:** For data ingestion from GitHub.
-2. **Azure Data Lake Storage Gen2**: As the primary data storage solution.
-3. **Azure Databricks:** For data transformation tasks.
-4. **Azure Synapse Analytics:** To perform in-depth data analytics.
+1. **Azure Data Factory:** Handles data ingestion from GitHub.
+2. **Azure Data Lake Storage Gen2**: Stores raw and processed data.
+3. **Azure Databricks:** Performs data cleaning, transformation, and structuring.
+4. **Azure Synapse Analytics:** Facilitates analytical querying and reporting.
    
 ## Workflow 
 
 ## Initial Setup
-Sign up for an Azure Free Subscription account.Create a new Resource Group named tokyo-olympic-data to centrally manage all Azure resources related to the project.Within this resource group, set up a Storage Account configured to use Azure Data Lake Storage (ADLS) Gen2 features.Inside the Storage Account, create a container to store project data. Organize the data using two directories: raw-data for unprocessed files and transformed-data for cleaned and processed files.
+1. Register for an Azure Free Subscription.
+2. Create a Resource Group named tokyo-olympics-data to logically group all project-related Azure resources.
+3. Inside the group, create a Storage Account enabled with ADLS Gen2 features.
+4. Create a Container inside this storage account to hold the project's data. Two directories 'raw-data' and 'transfromed-data' are created to store raw data and transformed data.
 
   <img src="Images/storage.png"> 
 
 ## Data Ingestion using Azure Data Factory
-1. Begin by creating an Azure Data Factory workspace within the previously established resource group.
+1. Start by creating an Azure Data Factory workspace within the previously established resource group.
 2. After setting up the workspace, launch the Azure Data Factory Studio. 
-3. Upload the Tokyo Olympics dataset from kaggle to GitHub.
-4. Within the studio, initialize a new data integration pipeline. Now use the task Copy Data to move data efficiently between various supported sources and destinations.
-5. Configuring the Data Source with HTTP template as we are using http request to get the data from GitHub repo.
-6. Establishing the Linked Service for source.
-7. Configuring the File Format for and setting up the Linked Service Sink.
-8. Repeat above steps to load all the datasets.
-9. You can connect all the copy data activity together and run them all at once.
-<img src="Images/datafactory_pipeline.png">  
+3. Upload the datasets to GitHub.
+4. Inside the Azure Data Factory Studio, start by creating a new data integration pipeline.
+5. Use the Copy Data activity to efficiently transfer data between supported sources and destinations.
+6. Configure the data source using the HTTP template, since the data will be fetched from a GitHub repository via HTTP request.Create and configure a Linked Service for the source connection.
+7. Define the appropriate File Format and set up the Linked Service for the Sink (destination).
+8. Repeat these steps for each dataset you need to load.
+9. Connect all the Copy Data activities within the pipeline to run them in parallel or sequence as required.
+<img src="Images/Df_pipeline.png">  
 10. After the pipeline completes its execution, navigate to your Azure Data Lake Storage Gen2. Dive into the "raw_data" folder and validate that the files, like "athletes.csv", "medals.csv", etc., are present and populated with the expected data.
 
- <img src="Images/raw_data_in_storage.png">
+ <img src="Images/Raw Data.png">
 
 ## Data Transformation using Azure Databricks
-1. Navigate to Azure Databricks within the Azure portal and create a workspace within the previously established resource group and launch it.
-2. Configuring Compute in Databricks
+1. Create and launch a Databricks workspace in your resource group.
+2. Set up a compute cluster.
 3. Create a new notebook within Databricks and rename it appropriately, reflecting its purpose or the dataset it pertains to.
 4. Establishing a Connection to Azure Data Lake Storage (ADLS)
 5. Using the credentials (Client ID, Tenant ID, Secret), write the appropriate code in the Databricks notebook to mount ADLS. 
 6. Writing Data Transformations mount ADLS Gen2 to Databricks.
 7. Writing Transformed Data to ADLS Gen2.
- <img src="Images/transformed_data_tables.png">
-  <img src="Images/transformed_data_contents.png">
+ <img src="Images/TransformedDT.png">
+  
 Refer below notebook to transformations and code used to mount ADLS Gen2 to Databricks.
 
 [Tokyo Olympics Transformation.ipynb](https://github.com/shubhammirajkar/tokyo_olympic_de_project/blob/main/Tokyo%20Olympics%20Transformation.ipynb)
@@ -59,13 +62,13 @@ Refer below notebook to transformations and code used to mount ADLS Gen2 to Data
 1. Creating a Synapse Analytics Workspace.
 2. Within Workspace navigate to the "Data" section , choose "Lake Database"  and create a Database "TokyoOlympicDB"
 3. Creating Table from Data Lake  from the Transformed Data folder within your ADLS Gen2 storage.
- <img src="Images/synapse_database_creation.png">
+ <img src="Images/synapsedbcreation.png">
  
 ## Performing Data Analysis on the Data
 
 Create SQL script to Perform Exploratory data analysis using SQL.
 You can aslo use PowerBI to generate your analysis reports.
- <img src="Images/synapse_analytics_report.png">
+ <img src="Images/synapseanalyticsreport.png">
 
 Refer to the SQL scripts used for data analysis 
-[Tokyo Olympics SQL script.sql](https://github.com/shubhammirajkar/tokyo_olympic_de_project/blob/main/Tokyo%20Olympics%20SQL%20script.sql)
+[SQL script.sql]
